@@ -10,6 +10,7 @@ from rich import print
 from telethon import TelegramClient
 from telethon.tl.types import PeerChannel, MessageMediaDocument, MessageMediaPhoto
 
+from YouTube.YouTube import download_video
 from system.config_class import ConfigClass
 from system.system_setting import connecting_new_account, checking_accounts
 from system.system_setting import console
@@ -121,12 +122,15 @@ async def main():
     """Основное окно программы"""
     await checking_accounts()
     try:
-        print("[bold red]\n"
-              "Дата создания: 28.04.2023\n"
-              "Версия программы: 0.0.6\n"
-              "[bold green][1] - Подключение нового аккаунта\n"
-              "[bold green][2] - Запуск parsing\n"
-              "[bold green][3] - Настройки\n")
+        print(
+            "[bold red]\n"
+            "Дата создания: 28.04.2023\n"
+            "Версия программы: 0.0.6\n"
+            "[bold green][1] - Подключение нового аккаунта\n"
+            "[bold green][2] - Запуск parsing\n"
+            "[bold green][3] - Настройки\n"
+            "[bold green][4] - Скачать с Youtube\n\n"
+        )
         user_input = console.input("[bold red][+] Введите номер : ")  # Вводим номер
         if user_input == "1":  # Подключение нового аккаунта
             await connecting_new_account()
@@ -149,6 +153,13 @@ async def main():
                 await main()  # После не правильного ввода номера возвращаемся в начальное меню
             else:
                 await main()  # После не правильного ввода номера возвращаемся в начальное меню
+
+        elif user_input == "4":
+            url = "https://www.youtube.com/watch?v=yIzSb0XD2_o"
+
+            download_video(url)
+
+
         else:
             await main()  # После не правильного ввода номера возвращаемся в начальное меню
     except KeyboardInterrupt:  # Закрытие окна программы
