@@ -3,4 +3,4 @@
 /accounts/
 /.idea/
 /setting/software_database.db
-!/.env
+/.env
