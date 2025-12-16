@@ -1,0 +1,5 @@
+configparser
+rich
+Telethon
+loguru
+mistune
